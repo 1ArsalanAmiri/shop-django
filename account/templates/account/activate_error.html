@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 60vh; padding: 2rem;">
+    <h1 class="text-danger mb-4" style="font-weight: 700; font-size: 2.5rem;">
+        ⚠️ Error activating your account
+    </h1>
+    <p class="fs-5 mb-4 text-muted">
+        Something went wrong while activating your account. Please try again.
+    </p>
+    <a href="{% url 'account:signup' %}" class="btn btn-danger btn-lg px-4">
+        Create a new account
+    </a>
+    <a href="{% url 'account:login' %}" class="btn btn-outline-secondary btn-lg mt-3 px-4">
+        Already have an account? Login
+    </a>
+</div>
+{% endblock %}

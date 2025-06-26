@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% csrf_token %}
+<center>
+<h1>
+    Your Account is Ready!<br>, Check Your Email Inbox for the Confirmation Code.♥
+</h1>
+<br>
+<h1>
+    Your Email Address: {{ obj.email }}
+</h1>
+</center>
+
+{% endblock %}

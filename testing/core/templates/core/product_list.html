@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+     Total Products : {{ products|length }}
+    {% for product in products %}
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            {% if product.image %}
+                                <img class="bd-placeholder-img card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            {% else %}
+                                <svg class="bd-placeholder-img card- img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                </svg>
+                            {% endif %}
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <b>{{ product.name }}</b><br/>
+                                    <b>Price: </b>{{ product.price }}<br/>
+                                    <br>
+                                    {{ product.description }}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
+                                        <a href="{% url 'core:cart_add' product.id %}" data-id="{{ product.id }}" class="btn btn-sm btn-outline-secondary add-to-cart-link">Add To Cart</a>
+                                    </div>
+                                    <small class="text-body-secondary">{{ product.discount }}%</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <script type="text/javascript">
+
+                    $('add-to-cart-link').click(function (e){
+                        target_link = $(this).attr('href');
+                        $.get(target_link , function (res , status , xhr){
+                            console.log(res);
+                            item_count = object.keys(res).length;
+                            $('#cart-count').html(item_count);
+                        });
+                       e.preventDefault();
+                       return false;
+                    });
+                </script>
+{% endblock %}

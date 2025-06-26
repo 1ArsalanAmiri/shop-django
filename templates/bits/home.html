@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - MyStore{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1>Welcome to 🔥 MyStore!</h1>
+    <p class="lead text-muted">Shop the best products in a beautiful dark theme.</p>
+    <a href="{% url 'core:product_list' %}" class="btn btn-primary btn-lg mt-3">Browse Products</a>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer style="background:#222; color:#fff; padding:1rem; text-align:center; margin-top:3rem;">
+    &copy; 2025 Arsalann Amiri. All rights reserved.
+</footer>
+{% endblock %}

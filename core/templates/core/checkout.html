@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div style="max-width: 480px; margin: 3rem auto; background: #222; padding: 2rem; border-radius: 1rem; box-shadow: 0 0 20px #ff6f61; color: #fff;">
+
+    <h2 class="text-center mb-4" style="color: #ff6f61;">💳 Payment Verification</h2>
+
+    <form method="post" action="{% url 'core:checkout' %}" style="display: flex; flex-direction: column; gap: 1.25rem;">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <label for="{{ field.id_for_label }}" class="form-label" style="color: #ddd; width: 100%; text-align: center;">{{ field.label }}</label>
+            {{ field|add_class:"form-control text-center" }}
+            {% if field.errors %}
+                <div class="text-danger small" style="text-align: center; width: 100%;">{{ field.errors|striptags }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <!-- فیلدهای اضافی -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <label class="form-label" style="color: #ddd; width: 100%; text-align: center;">Phone Number:</label>
+            <input type="text" name="phone" class="form-control text-center" required>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <label class="form-label" style="color: #ddd; width: 100%; text-align: center;">Postal Code:</label>
+            <input type="text" name="postal_code" class="form-control text-center" required>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <label class="form-label" style="color: #ddd; width: 100%; text-align: center;">Receivers Name:</label>
+            <input type="text" name="city" class="form-control text-center">
+        </div>
+
+        <button type="submit" class="btn btn-success mt-4" style="width: 100%;">Pay</button>
+    </form>
+</div>
+
+<style>
+.form-control {
+    background-color: transparent !important;
+    border: 1px solid #ccc !important;
+    color: #fff !important;
+    padding: 8px 12px;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: #ff6f61 !important;
+    box-shadow: 0 0 8px rgba(255, 111, 97, 0.6) !important;
+    outline: none !important;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+</style>
+{% endblock %}

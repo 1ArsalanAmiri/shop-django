@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load form_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-form bg-dark text-white p-4 rounded shadow-lg" style="max-width: 480px; margin: 3rem auto; border: 1px solid #444;">
+    <h2 class="text-center mb-4" style="color: #ff6f61;">Login to Your Account</h2>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                {{ field|add_class:"form-control bg-dark text-white border-secondary" }}
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-danger btn-block">Login</button>
+        </div>
+    </form>
+
+    <div class="text-center mt-3" style="color: #bbb;">
+        <p>Don't have an account? <a href="{% url 'account:signup' %}" style="color: #ff6f61; text-decoration: none;">Sign up here</a></p>
+    </div>
+</div>
+{% endblock %}

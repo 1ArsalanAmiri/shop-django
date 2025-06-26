@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="data-container">Nothing yet !</div>
+    <a href="#" id="action-link">Do It</a>
+    <script type="text/javascript">
+
+        $('add-to-cart-link').click(function (e){
+
+            $.get('{% url 'core:cart_add' %}' , function (res , status , xhr){
+                t = JSON.stringify(res);
+                $('#data-container').html(t);
+            });
+
+           e.preventDefault();
+           return false;
+        });
+    </script>
+
+{% endblock %}

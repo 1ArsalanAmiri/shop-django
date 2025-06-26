@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Confirmation{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 4rem auto; background: #222; padding: 2.5rem; border-radius: 1rem; box-shadow: 0 0 20px #ff6f61; text-align: center;">
+    <h1 style="color: #ff6f61; font-size: 2rem; margin-bottom: 1rem;">
+        Your Account is Ready! 💥
+    </h1>
+    <p style="color: #ddd; font-size: 1.2rem;">
+        Check your email inbox for the confirmation code.
+    </p>
+    <hr style="margin: 2rem auto; width: 60%; border-color: #444;">
+    <h2 style="color: #aaa; font-weight: normal;">
+        Your Email Address:
+        <span style="color: #fff;">{{ obj.email }}</span>
+    </h2>
+</div>
+{% endblock %}

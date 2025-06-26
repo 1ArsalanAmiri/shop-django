@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th><th>Count</th><th>Discount</th>
+                <th>Unit Price</th><th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for id,item in cart.items %}
+            <tr class="item-row" data-id = '{{ id }}'>
+                <td>{{ item.obj.name }}</td>
+                <td>{{ item.count }}</td>
+                <td>{{ item.discount }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.obj.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <hr/>
+    Total : <span id="total-price">{{ total }}</span>
+    <a href="{% url 'core:checkout' %}" class="btn btn-primary">CheckOut</a>
+    <script type="text/javascript">
+
+        $('.cart-remove-link').click(function(e){
+            target_link = $(this).attr('href');
+            link = $(this);
+            $.get(target_link , function (res , status , xhr){
+                $('#total-price').html(res.total);
+                if(!Object.keys(res.cart).includes(link.attr('data-id'))){
+                    link.parents('tr').remove();
+                }
+            });
+            e.preventDefault();
+            return false;
+        });
+    </script>
+
+    <a class="btn btn-danger " href="{% url 'core:cart_empty' %}" id="cart-empty-link">delete all</a>
+
+    <script type="text/javascript">
+    $('#cart-empty-link').click(function(e){
+        e.preventDefault();
+        const link = $(this);
+        const target_link = link.attr('href');
+        $.get(target_link, function(res){
+            $('#total-price').html(res.total);
+            $('tr.item-row').remove();
+        });
+        return false;
+    });
+    </script>
+
+{% endblock %}

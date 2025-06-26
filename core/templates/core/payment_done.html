@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .payment-success {
+        max-width: 500px;
+        margin: 80px auto;
+        padding: 30px 40px;
+        background: #e6f9f5;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 128, 128, 0.2);
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #00695c;
+    }
+
+    .payment-success h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #00796b;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .payment-success h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        background: #004d40;
+        color: #a5d6a7;
+        padding: 12px 20px;
+        border-radius: 10px;
+        display: inline-block;
+        letter-spacing: 1.2px;
+        user-select: text;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="payment-success">
+    <h1>Payment Done Successfully!</h1>
+    <h2>Your Reference ID is <br>{{ refid }}</h2>
+</div>
+{% endblock %}

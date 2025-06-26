@@ -1,0 +1,87 @@
+/* تم دارک کلی سایت */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: #61dafb;
+    text-decoration: none;
+}
+a:hover {
+    color: #21a1f1;
+    text-decoration: underline;
+}
+
+/* دکمه‌ها */
+.btn-outline-light {
+    color: #e0e0e0;
+    border-color: #e0e0e0;
+}
+.btn-outline-light:hover {
+    background-color: #ff6f61;
+    border-color: #ff6f61;
+    color: #fff;
+}
+
+/* کارت‌ها، جداول، فرم‌ها */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+table, th, td {
+    border: 1px solid #333;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+input[type="submit"], button {
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+input[type="submit"]:hover, button:hover {
+    background-color: #e85b4a;
+}
+
+/* فرم‌ها */
+input, select, textarea {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    color: #e0e0e0;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #ff6f61;
+    outline: none;
+    box-shadow: 0 0 5px #ff6f61;
+}
+
+/* کارت تعداد کالا */
+#cart-count {
+    display: none;
+}
+
+/* پیام‌های خطا فرم */
+.errorlist {
+    color: #ff6f61;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

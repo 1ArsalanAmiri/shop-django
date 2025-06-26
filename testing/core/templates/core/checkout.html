@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <h1>Invoice</h1>
+        <table>
+        <thead>
+            <tr>
+                <th>Name</th><th>Count</th><th>Discount</th>
+                <th>Unit Price</th><th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for id,item in cart.items %}
+            <tr class="item-row" data-id = '{{ id }}'>
+                <td>{{ item.obj.name }}</td>
+                <td>{{ item.count }}</td>
+                <td>{{ item.discount }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.obj.price }}</td>
+                <td><a class="btn btn-secondary cart-remove-link" href="{% url 'core:cart_remove' id=id %}" data-id="{{ id }}">X</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <hr/>
+    Total : <span id="total-price">{{ total }}</span>
+
+
+    <form method="post" action={% url 'core:checkout' %}>
+    {% csrf_token %}
+        <table>
+        {{ form }}
+    </table>
+    <input type="submit" class="btn btn-primary" value="Pay"/>
+
+    </form>
+
+{% endblock %}

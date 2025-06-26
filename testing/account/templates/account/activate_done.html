@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% csrf_token %}
+    <center>
+        <h1>
+        Thank You<br>
+        You can <a href="{% url 'login' %}">Login</a> now.
+        </h1>
+{% endblock %}
+    </center>

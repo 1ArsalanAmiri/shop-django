@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+    <h3 class="mb-4 text-center">Total Products: {{ products|length }}</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="product-image-container">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                    {% else %}
+                        <div class="no-image-placeholder">No Image Available</div>
+                    {% endif %}
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text flex-grow-1">{{ product.description|truncatewords:15 }}</p>
+                    <div class="mb-2">
+                        <strong>Price:</strong> {{ product.price }} تومان
+                        {% if product.discount > 0 %}
+                            <span class="badge bg-success ms-2">{{ product.discount }}% OFF</span>
+                        {% endif %}
+                    </div>
+                    <div class="d-flex justify-content-between">
+
+                        <a href="#" data-id="{{ product.id }}" class="btn btn-outline-light btn-sm me-2 add-to-cart-link">Add to Cart</a>
+
+                        <a href="#" class="btn btn-outline-secondary btn-sm">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.product-image-container {
+    width: 100%;
+    height: 200px; /* ارتفاع ثابت */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* رنگ پس‌زمینه روشن برای فضای خالی */
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain; /* حفظ نسبت تصویر و فضای خالی اطراف */
+}
+
+.no-image-placeholder {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dee2e6;
+    color: #6c757d;
+    font-weight: bold;
+    font-size: 1rem;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(function(){
+    $('.add-to-cart-link').click(function(e){
+        e.preventDefault();
+        const btn = $(this);
+        const productId = btn.data('id');
+        const url = "{% url 'core:cart_add' 0 %}".replace('0', productId);
+
+        $.get(url, function(res){
+            $('#cart-count').text(Object.keys(res).length);
+            btn.prop('disabled', true).text('Added!');
+            setTimeout(() => {
+                btn.prop('disabled', false).text('Add to Cart');
+            }, 2000);
+        }).fail(() => {
+            alert('خطا در افزودن به سبد خرید');
+        });
+    });
+});
+</script>
+{% endblock %}

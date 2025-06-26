@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Activated{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="text-center bg-dark border border-secondary rounded p-5 shadow-lg" style="max-width: 500px; width: 100%;">
+        <h1 class="text-success mb-4">🎉 Account Activated!</h1>
+        <p class="lead text-light">Thank you for verifying your account. You can now log in and enjoy the features of our store.</p>
+        <a href="{% url 'account:login' %}" class="btn btn-outline-success mt-4 px-4 py-2">Login Now</a>
+    </div>
+</div>
+{% endblock %}

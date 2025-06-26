@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" , enctype="application/x-www-form-urlencoded">
+        {% csrf_token %}
+    {{ form.non_field_errors }}
+    <table>
+          {% for field in form %}
+
+              <tr>
+              <td>{{ field.errors }}</td>
+              </tr>
+
+              <tr>
+              <td>{{ field.label_tag }} {{ field }} {% if field.help_text %}{{ field.help_text }} {% endif %}</td>
+              </tr>
+
+          {% endfor %}
+    </table>
+    <input type="submit" value="Sign Up">
+</form>
+
+{% endblock %}
+

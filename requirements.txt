@@ -1,0 +1,8 @@
+Django==5.1.4
+djangorestframework==3.16.0
+djangorestframework-simplejwt==5.5.0
+phonenumbers==9.0.2
+django-phonenumber-field==8.0.0
+widget-tweaks==1.5.0
+python-decouple==3.8
+requests==2.32.3

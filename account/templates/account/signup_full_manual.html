@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load form_tags %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="signup-form bg-dark text-white p-4 rounded shadow-lg" style="max-width: 480px; margin: 3rem auto; border: 1px solid #444;">
+    <h2 class="text-center mb-4" style="color: #ff6f61;">Create Account</h2>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <div class="mb-3">
+            {{ form.username.label_tag }}
+            {{ form.username|add_class:"form-control bg-dark text-white border-secondary" }}
+            {{ form.username.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name|add_class:"form-control bg-dark text-white border-secondary" }}
+            {{ form.first_name.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name|add_class:"form-control bg-dark text-white border-secondary" }}
+            {{ form.last_name.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.email.label_tag }}
+            {{ form.email|add_class:"form-control bg-dark text-white border-secondary" }}
+            {{ form.email.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.phone.label_tag }}
+            {{ form.phone|add_class:"form-control bg-dark text-white border-secondary" }}
+            {{ form.phone.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password1.label_tag }}
+            {{ form.password1|add_class:"form-control bg-dark text-white border-secondary" }}
+            {{ form.password1.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password2.label_tag }}
+            {{ form.password2|add_class:"form-control bg-dark text-white border-secondary" }}
+            {{ form.password2.errors }}
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-danger btn-block">Sign Up</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

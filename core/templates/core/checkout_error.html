@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; text-align: center; background-color: #f8d7da; color: #721c24; padding: 50px;">
+    <div style="max-width: 400px; margin: auto; padding: 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <h1>⚠️ خطای پرداخت</h1>
+        <p style="font-size: 18px; margin-bottom: 20px;">پرداخت شما با مشکل مواجه شد. لطفاً مجدداً امتحان کنید.</p>
+        {% if error_code %}
+        <p>کد خطا: {{ error_code }}</p>
+        {% endif %}
+        <a href="{% url 'core:checkout' %}" style="display: inline-block; padding: 10px 20px; color: #ffffff; background-color: #d9534f; text-decoration: none; border-radius: 5px;">بازگشت به صفحه پرداخت</a>
+    </div>
+</div>
+{% endblock %}
